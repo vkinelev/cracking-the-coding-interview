@@ -8,15 +8,18 @@ Input: Tact Coa
 Output: True (permutations:"taco cat'; "atco cta '; etc.)
 
 Questions
-1. Should we take into account space? (NO)
-2. Number of chars in the character set? (ASCII, 256)
+1. Should we take spaces into account? (NO)
+2. Do we use only lower case letters and space? (YES, charset is 26 chars)
 
 Solutions
-1. Calculate number of occurrences of the every char in the string. Store that
-in auxuliary array. Don't take into account spaces. Divide every number in array
-by 2 and replace numbers with a result of division. Sum all elements in the array.
-For string with even number of chars a sum should be equal to zero. For strings
-with odd number of chars a sum should be equal to 1
+1. A string is a palindrome permutation if maximum one character has odd
+number of occurances, all other characters have even or zero occurances. Thus,
+we don't need to know the exact number of occurance, but if it is even or odd.
+If some 0-1 flag is toggled for a char everytime it occurs in the string, then
+we result in 0 if there are even occurances, otherwise the flag should be 1.
+An integer variable `checker` acting as a bit vector can be used to store
+a set of flags for the charcter set. Time complexity is O(N). Space complexity
+O(1)
 
 Input Data Checks
 1. Return false if empty string
@@ -24,11 +27,22 @@ Input Data Checks
 TASK
 
 def is_palindrome_permutation(a)
-  false
+  return false if a.length == 0
+
+  checker = 0
+  a.each_codepoint do |codepoint|
+    next if codepoint == 32
+    checker = toggle(checker, codepoint)
+  end
+  checker == 0 || ((checker - 1) & checker) == 0
 end
 
-a = "Mr John Smith    "
-puts urlify(a.dup, 13)
+def toggle(checker, codepoint)
+  position = codepoint - "a".ord
+  checker ^= 1 << position
+end
 
-a = "  Mr John Smith        "
-puts urlify(a.dup, 15)
+# false
+puts is_palindrome_permutation('tacoztacoy')
+# true
+puts is_palindrome_permutation('taco taco')
