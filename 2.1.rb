@@ -6,7 +6,7 @@ Hints: #9, #40
 
 Questions
 1. Singly linked list or doubly linked list (Singly)
-2. What kind of data is stored in the list? (Integer)
+2. What kind of data is stored in the list? (Integer) 
 
 Solutions
 1. Use two `pointers` and do a regular nested loop. time complexity O(N^2) and
@@ -19,18 +19,7 @@ Input Data Checks
 TASK
 require './data_structures/linked_list'
 
-head = LinkedList::Node.new(1)
-head
-  .append(2)
-  .append(2)
-  .append(2)
-  .append(4)
-  .append(3)
-  .append(3)
-  .append(3)
-  .append(2)
-  .append(4)
-  .append(4)
+head = LinkedList::Node.new(1, 2, 2, 2, 4, 3, 3, 3, 2, 4, 4)
 
 def unique!(head)
   return nil unless head
