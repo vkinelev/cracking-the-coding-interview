@@ -14,8 +14,8 @@ module LinkedList
       end
     end
 
-    def append(data)
-      @next = Node.new(data)
+    def append(data_or_node)
+      @next = data_or_node.instance_of?(Node)? data_or_node : Node.new(data_or_node) 
     end
 
     def delete_after
