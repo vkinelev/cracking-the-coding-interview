@@ -1,4 +1,3 @@
-require "minitest/autorun"
 <<~TASK
 String Rotation: Assume you have a method isSubstring which checks if one word
 is a substring of another. Given two strings, s1 and s2, write code to check if
@@ -13,8 +12,7 @@ Questions
 
 Solutions
 1. Make s3 such as s3 = s1 + s1. Use isSubstring to check if s2 is a substring of
-s1. If yes, than s2 is a rotation of string s1. Time complexity O(N), space is
-complexity O(N)
+s1. If yes, than s2 is a rotation of string s1. T = O(N), S = O(N)
 
 Input Data Checks
 1. Length of s1 and s2 must be equal
@@ -24,16 +22,10 @@ TASK
 def is_rotation(s1, s2)
   raise 's1 and s2 must have equal length' if s1.length != s2.length
 
-  s3 = s1 * 2
-  is_substring(s3, s2)
+  s1 << s1
+  is_substring(s1, s2)
 end
 
 def is_substring(a, b)
   a.include?(b)
-end
-
-class TestIsRotation < Minitest::Test
-  def test_that_will_be_skipped
-    assert is_rotation('waterbottle', 'erbottlewat')
-  end
 end

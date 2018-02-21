@@ -37,7 +37,3 @@ def is_permutation(a, b)
   end
   true
 end
-
-puts is_permutation('abc', 'bca')
-puts is_permutation('abc', 'abc')
-puts is_permutation('abc1', 'bca')

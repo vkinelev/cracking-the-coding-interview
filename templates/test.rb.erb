@@ -1,0 +1,13 @@
+require './test/test_helper'
+require '<%= require_arg %>'
+
+class <%= test_class_name %> < Minitest::Test
+  def test_example
+    assert <%= problem_method_name %>()
+  end
+end
+
+class <%= benchmark_class_name %> < Minitest::Benchmark
+  def bench_algorithm
+  end
+end
