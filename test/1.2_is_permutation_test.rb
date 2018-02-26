@@ -3,7 +3,7 @@ require './problems/1.2_is_permutation'
 
 class TestIsPermutation < Minitest::Test
   def test_example
-    assert
+    assert is_permutation('abc', 'cba')
   end
 end
 
